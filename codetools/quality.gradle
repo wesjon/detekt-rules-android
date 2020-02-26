@@ -4,6 +4,7 @@ detekt {
     input = files(
             "src/main/java", "src/test/java"
     )
+    autoCorrect = true
     parallel = true
     config = files("$tools_dir/config/detekt.yml")
     ignoreFailures = false
