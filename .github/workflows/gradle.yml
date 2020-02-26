@@ -9,16 +9,27 @@ jobs:
 
     steps:
     - uses: actions/cache@v1
+    - name: Gradle cache
       with:
         path: ~/.gradle/caches
         key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle') }}
         restore-keys: |
           ${{ runner.os }}-gradle-
+
+    - uses: actions/cache@v1
+    - name: Cache Maven Deps
+      with:
+        path: ~/.m2/repository
+        key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+        restore-keys: |
+          ${{ runner.os }}-maven-
+
     - uses: actions/checkout@v2
     - name: Set up JDK 1.8
       uses: actions/setup-java@v1
       with:
         java-version: 1.8
+
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
     - name: Check for detekt issues
