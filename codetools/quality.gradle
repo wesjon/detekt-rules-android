@@ -1,0 +1,23 @@
+apply plugin: 'io.gitlab.arturbosch.detekt'
+
+
+
+detekt {
+    input = files(
+            "src/main/java", "src/test/java"
+    )
+    parallel = true
+    config = files("$rootDir/config/detekt.yml")
+    ignoreFailures = false
+    reports {
+        html {
+            enabled = true
+            destination = file("build/reports/detekt.html")
+        }
+    }
+}
+
+dependencies {
+    detekt "io.gitlab.arturbosch.detekt:detekt-formatting:$detekt_version"
+    detekt "io.gitlab.arturbosch.detekt:detekt-cli:${detekt_version}"
+}
