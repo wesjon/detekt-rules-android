@@ -30,8 +30,7 @@ android {
     }
 
     lintOptions {
-        abortOnError false
-        lintConfig file("$tools_dir/config/android_lint.xml")
+        disable 'Typos'
     }
 
     viewBinding.enabled = true

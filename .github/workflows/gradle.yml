@@ -18,3 +18,5 @@ jobs:
       run: chmod +x gradlew
     - name: Check for detekt issues
       run: ./gradlew detekt
+    - name: Check for Android Lint errors
+      run: ./gradlew lintDebug
