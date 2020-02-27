@@ -29,6 +29,11 @@ android {
         jvmTarget = '1.8'
     }
 
+    lintOptions {
+        abortOnError false
+        lintConfig file("$tools_dir/config/android_lint.xml")
+    }
+
     viewBinding.enabled = true
 }
 
