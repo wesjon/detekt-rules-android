@@ -1,10 +1,10 @@
 package br.com.wesjon
 
 import android.os.Bundle
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity(R.layout.activity_main) {
 
@@ -14,5 +14,9 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
 
         val navController = findNavController(R.id.nav_host_fragment)
         navView.setupWithNavController(navController)
+    }
+
+    private fun nullable(nullableString: String?) {
+//        println(nullableString!!)
     }
 }
