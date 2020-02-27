@@ -23,4 +23,4 @@ jobs:
         if: failure()
         with:
           name: Lint-report
-          path: 'build/reports/lint-results-debug.html'
+          path: 'app/build/reports/lint-results-debug.html'
