@@ -18,3 +18,10 @@ jobs:
       run: chmod +x gradlew
     - name: Check for detekt issues
       run: ./gradlew detekt
+    - name: Upload artifact
+
+    - uses: actions/upload-artifact@v1
+      if: failure()
+      with:
+        name: Detekt-report
+        path: 'build/reports/detekt.html'

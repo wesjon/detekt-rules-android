@@ -18,3 +18,9 @@ jobs:
         run: chmod +x gradlew
       - name: Check for Android Lint errors
         run: ./gradlew lintDebug
+
+      - uses: actions/upload-artifact@v1
+        if: failure()
+        with:
+          name: Lint-report
+          path: 'build/reports/lint-results-debug.html'
