@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
+apply from: "$tools_dir/quality.gradle"
 
 android {
     compileSdkVersion 29
