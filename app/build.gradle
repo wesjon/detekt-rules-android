@@ -2,6 +2,8 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply from: "$tools_dir/quality.gradle"
 
+tasks.detekt.jvmTarget = "1.8"
+
 android {
     compileSdkVersion 29
 
