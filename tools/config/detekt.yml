@@ -29,7 +29,7 @@ console-reports:
     - 'ComplexityReport'
     - 'NotificationReport'
     #  - 'FindingsReport'
-    - 'FileBasedFindingsReport'
+#    - 'FileBasedFindingsReport'
 
 comments:
   active: true
@@ -645,3 +645,5 @@ style:
     active: true
     excludes: ['**/test/**', '**/androidTest/**', '**/commonTest/**', '**/jvmTest/**', '**/jsTest/**', '**/iosTest/**']
     excludeImports: ['java.util.*', 'kotlinx.android.synthetic.*']
+
+custom-rules:
