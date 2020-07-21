@@ -7,7 +7,6 @@ detekt {
     autoCorrect = true
     parallel = true
     config = files("$tools_dir/config/detekt.yml")
-    ignoreFailures = false
     reports {
         html {
             enabled = true
@@ -17,6 +16,7 @@ detekt {
 }
 
 dependencies {
+    detekt project(":detekt-rules")
     detekt "io.gitlab.arturbosch.detekt:detekt-formatting:$detekt_version"
     detekt "io.gitlab.arturbosch.detekt:detekt-cli:${detekt_version}"
 }
