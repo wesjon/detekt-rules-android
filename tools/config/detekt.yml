@@ -27,8 +27,8 @@ console-reports:
   exclude:
     - 'ProjectStatisticsReport'
     - 'ComplexityReport'
-    - 'NotificationReport'
-    #  - 'FindingsReport'
+#    - 'NotificationReport'
+#    - 'FindingsReport'
 #    - 'FileBasedFindingsReport'
 
 comments:

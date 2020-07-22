@@ -12,6 +12,8 @@ detekt {
             enabled = true
             destination = file("build/reports/detekt.html")
         }
+        xml.enabled = false
+        txt.enabled = false
     }
 }
 
