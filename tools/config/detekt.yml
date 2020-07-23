@@ -8,7 +8,7 @@ build:
   # comments: 1
 
 config:
-  validation: true
+  validation: false
   # when writing own rules with new properties, exclude the property path e.g.: 'my_rule_set,.*>.*>[my_property]'
   excludes: ''
 
@@ -27,9 +27,9 @@ console-reports:
   exclude:
     - 'ProjectStatisticsReport'
     - 'ComplexityReport'
-    - 'NotificationReport'
-    #  - 'FindingsReport'
-    - 'FileBasedFindingsReport'
+#    - 'NotificationReport'
+#    - 'FindingsReport'
+#    - 'FileBasedFindingsReport'
 
 comments:
   active: true
@@ -645,3 +645,5 @@ style:
     active: true
     excludes: ['**/test/**', '**/androidTest/**', '**/commonTest/**', '**/jvmTest/**', '**/jsTest/**', '**/iosTest/**']
     excludeImports: ['java.util.*', 'kotlinx.android.synthetic.*']
+
+custom-rules:

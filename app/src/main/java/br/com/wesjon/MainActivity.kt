@@ -15,12 +15,4 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
         val navController = findNavController(R.id.nav_host_fragment)
         navView.setupWithNavController(navController)
     }
-
-    fun nullable(xpto: String) {
-        xpto!!.length
-    }
-
-    fun unsafeCallOnNullable(nullable: String?) {
-        nullable!!.length
-    }
 }
