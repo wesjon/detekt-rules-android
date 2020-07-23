@@ -1,7 +1,6 @@
 package br.com.wesjon.linters.detekt.rule
 
 import io.gitlab.arturbosch.detekt.api.*
-import org.jetbrains.kotlin.psi.KtForExpression
 import org.jetbrains.kotlin.psi.KtLoopExpression
 import org.jetbrains.kotlin.psi.KtNamedFunction
 import org.jetbrains.kotlin.psi.psiUtil.anyDescendantOfType
@@ -29,7 +28,8 @@ class NoLoopInTestRule : Rule() {
                 report(
                     CodeSmell(
                         issue,
-                        Entity.from(function), ""
+                        Entity.from(function),
+                        "O teste ${function.name} contem loop"
                     )
                 )
             }

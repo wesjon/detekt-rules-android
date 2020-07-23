@@ -34,7 +34,7 @@ class NoLoopInTestRuleTest {
         val findings = noLoopInTestRule.lint(testWithLoop)
 
         assertThat(findings).hasSize(1)
-        assertThat(findings[0].message).isEqualTo("")
+        assertThat(findings[0].message).isEqualTo("O teste addition isCorrect contem loop")
     }
 
     @Test

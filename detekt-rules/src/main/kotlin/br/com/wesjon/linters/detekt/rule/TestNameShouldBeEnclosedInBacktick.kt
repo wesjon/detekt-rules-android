@@ -24,7 +24,7 @@ class TestNameShouldBeEnclosedInBacktick : Rule() {
                 report(
                     CodeSmell(
                         issue, Entity.from(function),
-                        "O nome do teste precisa ter backtick"
+                        "O nome do teste precisa conter backtick"
                     )
                 )
             }

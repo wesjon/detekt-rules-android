@@ -30,7 +30,7 @@ class ExampleUnitTest {
         val findings = testShouldContainBacktickRule.lint(testThatdoesntContainBacktick)
 
         assertThat(findings).hasSize(1)
-        assertThat(findings[0].message).isEqualTo("O nome do teste precisa ter backtick")
+        assertThat(findings[0].message).isEqualTo("O nome do teste precisa conter backtick")
     }
 
     @Test
