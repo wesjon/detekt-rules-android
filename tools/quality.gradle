@@ -1,9 +1,7 @@
 apply plugin: 'io.gitlab.arturbosch.detekt'
 
 detekt {
-    input = files(
-            "src/main/java", "src/test/java"
-    )
+    input = files("src/main/java", "src/test/java")
     autoCorrect = true
     parallel = true
     config = files("$tools_dir/config/detekt.yml")
@@ -16,6 +14,9 @@ detekt {
         txt.enabled = false
     }
 }
+
+tasks.detekt.jvmTarget = "1.8"
+tasks.detekt.classpath.setFrom(project.configurations.getByName("detekt"))
 
 dependencies {
     detekt project(":detekt-rules")

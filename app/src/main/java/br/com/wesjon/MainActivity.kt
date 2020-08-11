@@ -8,11 +8,15 @@ import androidx.navigation.ui.setupWithNavController
 
 class MainActivity : AppCompatActivity(R.layout.activity_main) {
 
+    private val aString: String? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val navView: BottomNavigationView = findViewById(R.id.nav_view)
 
         val navController = findNavController(R.id.nav_host_fragment)
         navView.setupWithNavController(navController)
+
+        val aStringLength = aString!!.length
     }
 }
