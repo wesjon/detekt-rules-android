@@ -1,6 +1,6 @@
 buildscript {
     ext.kotlin_version = "1.3.72"
-    ext.detekt_version = '1.10.0'
+    ext.detekt_version = '1.12.0'
     ext.tools_dir = "$rootDir/tools"
 
     repositories {
