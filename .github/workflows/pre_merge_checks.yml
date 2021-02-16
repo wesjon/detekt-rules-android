@@ -17,7 +17,10 @@ jobs:
           with:
             java-version: 1.8
 
-        - name: Build detekt rules
+        - name: Grant execute permission for gradlew
+          run: chmod +x gradlew
+
+        - name: Assemble app
           run: ./gradlew app:assemble
 
   build_custom_detekt_rules:
@@ -29,6 +32,9 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 1.8
+
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
 
       - name: Build detekt rules
         run: ./gradlew detekt-rules:build
@@ -43,5 +49,8 @@ jobs:
         with:
           java-version: 1.8
 
-      - name: Build detekt rules
+      - name: Grant execute permission for gradlew
+          run: chmod +x gradlew
+
+      - name: test detekt rules
         run: ./gradlew detekt-rules:test
