@@ -6,21 +6,21 @@ import org.junit.Test
 
 class TestNameShouldBeEnclosedInBacktickTest {
     private val testThatdoesntContainBacktick = """
-class ExampleUnitTest {
-    @Test
-    fun addition_isCorrect() {
-        assertEquals(4, 2 + 2)
-    }
-}
+        class ExampleUnitTest {
+            @Test
+            fun addition_isCorrect() {
+                assertEquals(4, 2 + 2)
+            }
+        }
     """.trimIndent()
 
     private val testThatContainBacktick = """
-class ExampleUnitTest {
-    @Test
-    fun `addition is correct`() {
-        assertEquals(4, 2 + 2)
-    }
-}
+        class ExampleUnitTest {
+            @Test
+            fun `addition is correct`() {
+                assertEquals(4, 2 + 2)
+            }
+        }
     """.trimIndent()
 
     private val testShouldContainBacktickRule = TestNameShouldBeEnclosedInBacktick()
