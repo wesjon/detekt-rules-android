@@ -29,11 +29,9 @@ android {
         jvmTarget = '1.8'
     }
 
-    lintOptions {
-        disable 'Typos'
+    buildFeatures {
+        viewBinding = true
     }
-
-    viewBinding.enabled = true
 }
 
 dependencies {
