@@ -1,12 +1,12 @@
 ![Pre Merge Checks](https://github.com/wesjon/android-linters/workflows/Pre-merge%20checks/badge.svg)
 
-# Android-linters
+# Detekt rules for Android
 
-Este é um projeto de testes para demonstrar a configuração de analisadores estáticos para Android
+This repository contains an opinionated set of Detekt Rules for Android projects
 
 
-## Novas regras no Detekt
+## Detekt Rules
 
-**TestNameShouldBeEnclosedInBacktickTest:** Exige que os testes contenham backtick
-
-**NoLoopInTestRule:** Exige que os testes não contenham loop
+| Rule | Description | Configuration options | 
+| --- | --- | --- |
+| **NoLoopInTestRuleTest** | Checks if loop structures are found in tests | - |
