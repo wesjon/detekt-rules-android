@@ -1,6 +1,4 @@
 <resources>
-    <string name="app_name">Android Linters</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="app_name">Detekt rules</string>
+    <string name="friendly_message">Hello world!</string>
 </resources>

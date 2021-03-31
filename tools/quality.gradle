@@ -18,7 +18,7 @@ detekt {
 }
 
 dependencies {
-    detekt project(":detekt-rules")
+    detekt project(":android-rules")
     detekt "io.gitlab.arturbosch.detekt:detekt-formatting:$detekt_version"
     detekt "io.gitlab.arturbosch.detekt:detekt-cli:${detekt_version}"
 }
