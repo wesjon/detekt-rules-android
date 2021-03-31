@@ -17,7 +17,7 @@ jobs:
           java-version: 1.8
 
       - name: Assemble sample app
-        run: ./gradlew assemble
+        run: ./gradlew sample:assemble
 
   test_custom_detekt_rules:
     runs-on: ubuntu-latest
