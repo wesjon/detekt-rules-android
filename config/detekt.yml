@@ -8,7 +8,7 @@ build:
   # comments: 1
 
 config:
-  validation: false
+  validation: true
   # when writing own rules with new properties, exclude the property path e.g.: 'my_rule_set,.*>.*>[my_property]'
   excludes: ''
 
@@ -32,7 +32,7 @@ console-reports:
 #    - 'FileBasedFindingsReport'
 
 comments:
-  active: true
+  active: false
   excludes: ['**/test/**', '**/androidTest/**', '**/commonTest/**', '**/jvmTest/**', '**/jsTest/**', '**/iosTest/**']
   AbsentOrWrongFileLicense:
     active: false
@@ -56,7 +56,7 @@ comments:
     active: false
 
 complexity:
-  active: true
+  active: false
   ComplexCondition:
     active: true
     threshold: 4
@@ -114,14 +114,14 @@ complexity:
     ignoreOverridden: false
 
 coroutines:
-  active: true
+  active: false
   GlobalCoroutineUsage:
     active: false
   RedundantSuspendModifier:
     active: false
 
 empty-blocks:
-  active: true
+  active: false
   EmptyCatchBlock:
     active: true
     allowedExceptionNameRegex: '_|(ignore|expected).*'
@@ -156,7 +156,7 @@ empty-blocks:
     active: true
 
 exceptions:
-  active: true
+  active: false
   ExceptionRaisedInUnexpectedLocation:
     active: false
     methodNames: [toString, hashCode, equals, finalize]
@@ -214,7 +214,7 @@ exceptions:
       - RuntimeException
 
 formatting:
-  active: true
+  active: false
   android: false
   autoCorrect: true
   AnnotationOnSeparateLine:
@@ -333,7 +333,7 @@ formatting:
     autoCorrect: true
 
 naming:
-  active: true
+  active: false
   ClassNaming:
     active: true
     excludes: ['**/test/**', '**/androidTest/**', '**/commonTest/**', '**/jvmTest/**', '**/jsTest/**', '**/iosTest/**']
@@ -416,7 +416,7 @@ naming:
     ignoreOverridden: true
 
 performance:
-  active: true
+  active: false
   ArrayPrimitive:
     active: true
   ForEachOnRange:
@@ -429,7 +429,7 @@ performance:
     active: true
 
 potential-bugs:
-  active: true
+  active: false
   Deprecation:
     active: false
   DuplicateCaseInWhenExpression:
@@ -486,7 +486,7 @@ potential-bugs:
     active: true
 
 style:
-  active: true
+  active: false
   CollapsibleIfStatements:
     active: false
   DataClassContainsFunctions:
@@ -646,4 +646,7 @@ style:
     excludes: ['**/test/**', '**/androidTest/**', '**/commonTest/**', '**/jvmTest/**', '**/jsTest/**', '**/iosTest/**']
     excludeImports: ['java.util.*', 'kotlinx.android.synthetic.*']
 
-custom-rules:
+android-rules:
+  TestNameShouldFollowNamingConvention:
+    active: true
+    namingConvention: 'backtick'

@@ -6,7 +6,7 @@ detekt {
     )
     autoCorrect = true
     parallel = true
-    config = files("$tools_dir/config/detekt.yml")
+    config = files("$rootDir/config/detekt.yml")
     reports {
         html {
             enabled = true
@@ -15,10 +15,16 @@ detekt {
         xml.enabled = false
         txt.enabled = false
     }
+
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin/'
+        test.java.srcDirs += 'src/test/kotlin/'
+    }
 }
 
 dependencies {
     detekt project(":android-rules")
+
     detekt "io.gitlab.arturbosch.detekt:detekt-formatting:$detekt_version"
     detekt "io.gitlab.arturbosch.detekt:detekt-cli:${detekt_version}"
 }

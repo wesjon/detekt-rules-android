@@ -1,6 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
-apply from: "$tools_dir/quality.gradle"
+apply from: "$rootDir/detekt.gradle"
 
 android {
     compileSdkVersion 30
@@ -38,4 +38,6 @@ dependencies {
     implementation 'androidx.core:core-ktx:1.3.2'
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'com.google.android.material:material:1.3.0'
+
+    testImplementation 'junit:junit:4.13.2'
 }

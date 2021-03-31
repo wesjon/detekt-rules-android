@@ -1,4 +1,4 @@
-package br.com.wesjon.rule
+package br.com.wesjon.detekt.rule
 
 import io.gitlab.arturbosch.detekt.api.*
 import org.jetbrains.kotlin.psi.KtLoopExpression
