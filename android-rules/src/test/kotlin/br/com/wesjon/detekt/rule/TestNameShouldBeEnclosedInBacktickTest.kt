@@ -6,14 +6,14 @@ import io.gitlab.arturbosch.detekt.test.TestConfig
 import io.gitlab.arturbosch.detekt.test.lint
 import org.junit.Test
 
-class TestNameShouldBeEnclosedInBacktickTest {
-    private val testShouldContainBacktickRule = TestNameShouldFollowNamingConvention(
+class TestNameShouldFollowNamingConventionTest {
+    private val testConventionBacktick = TestNameShouldFollowNamingConvention(
         TestConfig(mapOf(CONVENTION_KEY to NamingConventions.BACKTICK.identifier))
     )
 
     @Test
     fun `test doesnt contains backtick should report issue`() {
-        val findings = testShouldContainBacktickRule.lint(
+        val findings = testConventionBacktick.lint(
             """
             @Test
             fun addition_isCorrect() {
@@ -29,7 +29,7 @@ class TestNameShouldBeEnclosedInBacktickTest {
 
     @Test
     fun `test contains backtick find no issues`() {
-        val findings = testShouldContainBacktickRule.lint(
+        val findings = testConventionBacktick.lint(
             """
             @Test
             fun `addition is correct`() {

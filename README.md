@@ -9,4 +9,4 @@ This repository contains an opinionated set of Detekt Rules for Android projects
 
 | Rule | Description | Configuration options | 
 | --- | --- | --- |
-| **NoLoopInTestRuleTest** | Checks if loop structures are found in tests | - |
+| **TestNameShouldFollowNamingConvention** | Checks whether test names follow the name convention | [backtick] |
