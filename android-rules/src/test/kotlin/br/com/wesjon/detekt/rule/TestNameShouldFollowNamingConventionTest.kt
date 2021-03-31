@@ -40,4 +40,11 @@ class TestNameShouldFollowNamingConventionTest {
 
         assertThat(findings).isEmpty()
     }
+
+    @Test(expected = IllegalArgumentException::class)
+    fun `rule config contains invalid namingConvention throw exception`() {
+        TestNameShouldFollowNamingConvention(
+            TestConfig(mapOf(CONVENTION_KEY to "invalid"))
+        ).lint("@Test fun test(){}")
+    }
 }

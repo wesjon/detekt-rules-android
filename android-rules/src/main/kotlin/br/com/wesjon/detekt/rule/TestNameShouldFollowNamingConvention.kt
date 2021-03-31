@@ -34,15 +34,12 @@ class TestNameShouldFollowNamingConvention(config: Config) : Rule(config) {
     override fun visitNamedFunction(function: KtNamedFunction) {
         super.visitNamedFunction(function)
 
+        require(selectedNamingConvention in NamingConventions.options) {
+            "namingConvention was $selectedNamingConvention and should be set with one of the $optionsText"
+        }
+
         val functionName = function.nameIdentifier?.text
-
         if (function.isTestFunction() && functionName != null) {
-            if (selectedNamingConvention !in NamingConventions.options) {
-                throw IllegalArgumentException(
-                    "namingConvention was $selectedNamingConvention and should be set with one of the $optionsText"
-                )
-            }
-
             val error = NamingConventions.values().find {
                 !functionName.contains(it.regex)
             }
