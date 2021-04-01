@@ -68,7 +68,6 @@ class TestNameShouldFollowNamingConvention(config: Config) : Rule(config) {
         }
     }
 
-
     companion object {
         const val CONVENTION_KEY = "namingConvention"
         private val optionsText = "options: ${NamingConventions.options.joinToString()}"
