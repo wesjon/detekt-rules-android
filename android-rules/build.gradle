@@ -1,4 +1,5 @@
 apply plugin: "kotlin"
+apply plugin: 'maven-publish'
 
 dependencies {
     compileOnly "io.gitlab.arturbosch.detekt:detekt-api:$detekt_version"
@@ -7,6 +8,20 @@ dependencies {
     testImplementation "com.google.truth:truth:1.1.2"
     testImplementation "io.gitlab.arturbosch.detekt:detekt-api:$detekt_version"
     testImplementation "io.gitlab.arturbosch.detekt:detekt-test:$detekt_version"
+}
+
+afterEvaluate {
+    publishing {
+        publications {
+            core(MavenPublication) {
+                from components.java
+
+                artifactId = 'detekt-rules-android'
+                groupId = "br.com.wesjon"
+                version = "0.1"
+            }
+        }
+    }
 }
 
 compileKotlin {
