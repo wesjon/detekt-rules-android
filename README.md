@@ -33,6 +33,8 @@ android-rules:
     active: true
 ```
 
+## Rules
+
 ### TestNameShouldFollowNamingConvention
 
 Checks whether test names follow the name convention. This rule only applies if method is annotated with `@Test`
