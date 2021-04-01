@@ -1,6 +1,6 @@
 package br.com.wesjon.detekt.rule
 
-import br.com.wesjon.detekt.rule.TestNameShouldFollowNamingConvention.Companion.CONVENTION_KEY
+import br.com.wesjon.detekt.rule.TestNameShouldFollowNamingConvention.Companion.KEY_CONVENTION
 import com.google.common.truth.Truth.assertThat
 import io.gitlab.arturbosch.detekt.test.TestConfig
 import io.gitlab.arturbosch.detekt.test.lint
@@ -8,13 +8,13 @@ import org.junit.Test
 
 class TestNameShouldFollowNamingConventionTest {
     private val testConventionBacktick = TestNameShouldFollowNamingConvention(
-        TestConfig(mapOf(CONVENTION_KEY to NamingConventions.BACKTICK.identifier))
+        TestConfig(mapOf(KEY_CONVENTION to NamingConventions.BACKTICK.identifier))
     )
     private val testConventionSnakeCase = TestNameShouldFollowNamingConvention(
-        TestConfig(mapOf(CONVENTION_KEY to NamingConventions.SNAKE_CASE.identifier))
+        TestConfig(mapOf(KEY_CONVENTION to NamingConventions.SNAKE_CASE.identifier))
     )
     private val testConventionCammelCase = TestNameShouldFollowNamingConvention(
-        TestConfig(mapOf(CONVENTION_KEY to NamingConventions.CAMEL_CASE.identifier))
+        TestConfig(mapOf(KEY_CONVENTION to NamingConventions.CAMEL_CASE.identifier))
     )
 
     @Test
@@ -110,7 +110,7 @@ class TestNameShouldFollowNamingConventionTest {
     @Test(expected = IllegalArgumentException::class)
     fun `rule config contains invalid namingConvention throw exception`() {
         TestNameShouldFollowNamingConvention(
-            TestConfig(mapOf(CONVENTION_KEY to "invalid"))
+            TestConfig(mapOf(KEY_CONVENTION to "invalid"))
         ).lint("@Test fun test(){}")
     }
 }

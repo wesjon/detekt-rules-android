@@ -3,6 +3,7 @@ package br.com.wesjon.detekt.rule
 import br.com.wesjon.detekt.util.isViewModel
 import br.com.wesjon.detekt.util.typeName
 import io.gitlab.arturbosch.detekt.api.*
+import io.gitlab.arturbosch.detekt.api.internal.valueOrDefaultCommaSeparated
 import org.jetbrains.kotlin.psi.KtClass
 import org.jetbrains.kotlin.psi.KtProperty
 import org.jetbrains.kotlin.psi.psiUtil.collectDescendantsOfType
@@ -16,10 +17,13 @@ class ViewModelExposesState(config: Config) : Rule(config) {
         Debt.TWENTY_MINS
     )
 
+    private val customBaseViewModels =
+        ruleSetConfig.valueOrDefaultCommaSeparated(KEY_CUSTOM_VIEWMODEL_CLASSES_NAME, emptyList())
+
     override fun visitClass(klass: KtClass) {
         super.visitClass(klass)
 
-        if (klass.isViewModel()) {
+        if (klass.isViewModel(*customBaseViewModels.toTypedArray())) {
             val mutableStateProperties = klass.collectDescendantsOfType<KtProperty>()
                 .asSequence()
                 .filter { property -> property.isPublic }
@@ -40,6 +44,7 @@ class ViewModelExposesState(config: Config) : Rule(config) {
     }
 
     companion object {
+        val KEY_CUSTOM_VIEWMODEL_CLASSES_NAME = "customViewModels"
         private val mutableStateTypes = listOf("MutableLiveData", "MutableStateFlow")
     }
 }

@@ -28,7 +28,7 @@ You may want to activate or deactivate rules according to your project needs.
 android-rules:
   TestNameShouldFollowNamingConvention:
     active: true
-    namingConvention: 'backtick' // backtick, snake_case or camelCase
+    namingConvention: 'backtick' // REQUIRED: backtick, snake_case or camelCase
   ViewModelExposesState:
     active: true
 ```

@@ -40,7 +40,7 @@ class TestNameShouldFollowNamingConvention(config: Config) : Rule(config) {
         Debt.FIVE_MINS
     )
 
-    private val selectedNamingConvention = valueOrDefault(CONVENTION_KEY, "")
+    private val selectedNamingConvention = valueOrDefault(KEY_CONVENTION, "")
 
     override fun visitNamedFunction(function: KtNamedFunction) {
         super.visitNamedFunction(function)
@@ -67,7 +67,7 @@ class TestNameShouldFollowNamingConvention(config: Config) : Rule(config) {
     }
 
     companion object {
-        const val CONVENTION_KEY = "namingConvention"
+        const val KEY_CONVENTION = "namingConvention"
         private val optionsText =
             "options: ${NamingConventions.values().joinToString { it.identifier }}"
     }
