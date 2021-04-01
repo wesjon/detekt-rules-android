@@ -31,6 +31,7 @@ android-rules:
     namingConvention: 'backtick' // REQUIRED: backtick, snake_case or camelCase
   ViewModelExposesState:
     active: true
+    customViewModel: 'BaseViewModel' // OPTIONAL: If your application uses a base/custom ViewModel
 ```
 
 ## Rules
