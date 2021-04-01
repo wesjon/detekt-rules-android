@@ -28,8 +28,6 @@ enum class NamingConventions(
     );
 
     companion object {
-        val options = values().map { it.identifier }
-
         fun getNamingConventionByIdentifier(identifier: String) =
             values().find { it.identifier == identifier }
     }
@@ -70,6 +68,7 @@ class TestNameShouldFollowNamingConvention(config: Config) : Rule(config) {
 
     companion object {
         const val CONVENTION_KEY = "namingConvention"
-        private val optionsText = "options: ${NamingConventions.options.joinToString()}"
+        private val optionsText =
+            "options: ${NamingConventions.values().joinToString { it.identifier }}"
     }
 }
