@@ -7,7 +7,7 @@ This repository contains an opinionated set of Detekt Rules for Android projects
 
 ## Getting started
 
-#### Add this library declaration into your detekt dependencies
+#### 1. Add this library declaration into your detekt dependencies
 
 ```groovy
 detekt {
@@ -20,7 +20,7 @@ dependencies {
 }
 ```
 
-#### Include a new block in your `detekt.yml` file
+#### 2. Include a new block in your `detekt.yml` file
 
 You may want to activate or deactivate rules according to your project needs.
 
