@@ -7,19 +7,18 @@ This repository contains an opinionated set of Detekt Rules for Android projects
 
 ## Detekt Rules
 
-
-### TestNameShouldFollowNamingConvention
-
-Checks whether test names follow the name convention. This rule only applies if method is annotated with `@Test`
-
-#### Config options
-
 ```yml
 android-rules:
   TestNameShouldFollowNamingConvention:
     active: true
     namingConvention: 'backtick' // backtick, snake_case or camelCase
+  ViewModelExposesState:
+    active: true
 ```
+
+### TestNameShouldFollowNamingConvention
+
+Checks whether test names follow the name convention. This rule only applies if method is annotated with `@Test`
 
 #### NON-compliant code
 
