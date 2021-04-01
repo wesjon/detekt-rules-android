@@ -13,16 +13,23 @@ enum class NamingConventions(
         identifier = "backtick",
         regex = "`[\\w\\d\\s]+`".toRegex(),
         errorDescription = "The method %s should be using backtick (ex.: @Test fun `addition is correct`(){})"
+    ),
+
+    SNAKE_CASE(
+        identifier = "snake_case",
+        regex = "^[a-z._]+\$".toRegex(),
+        errorDescription = "The method %s should be in snake_case (ex.:@Test fun addition_is_correct(){} )"
     );
 
     companion object {
         val options = values().map { it.identifier }
+
+        fun getNamingConventionByIdentifier(identifier: String) =
+            values().find { it.identifier == identifier }
     }
 }
 
 class TestNameShouldFollowNamingConvention(config: Config) : Rule(config) {
-
-    private val optionsText = "options: ${NamingConventions.options.joinToString()}"
     override val issue = Issue(
         javaClass.simpleName, Severity.CodeSmell,
         "Checks whether test names follow the name convention ($optionsText)",
@@ -34,22 +41,21 @@ class TestNameShouldFollowNamingConvention(config: Config) : Rule(config) {
     override fun visitNamedFunction(function: KtNamedFunction) {
         super.visitNamedFunction(function)
 
-        require(selectedNamingConvention in NamingConventions.options) {
+        val selectedConvention =
+            NamingConventions.getNamingConventionByIdentifier(selectedNamingConvention)
+        requireNotNull(selectedConvention) {
             "namingConvention was $selectedNamingConvention and should be set with one of the $optionsText"
         }
 
         val functionName = function.nameIdentifier?.text
         if (function.isTestFunction() && functionName != null) {
-            val error = NamingConventions.values().find {
-                !functionName.contains(it.regex)
-            }
-
-            if (error != null) {
+            val isFollowingConvention = functionName.contains(selectedConvention.regex)
+            if (!isFollowingConvention) {
                 report(
                     CodeSmell(
                         issue,
                         Entity.from(function),
-                        error.errorDescription.format(functionName)
+                        selectedConvention.errorDescription.format(functionName)
                     )
                 )
             }
@@ -59,5 +65,6 @@ class TestNameShouldFollowNamingConvention(config: Config) : Rule(config) {
 
     companion object {
         const val CONVENTION_KEY = "namingConvention"
+        private val optionsText = "options: ${NamingConventions.options.joinToString()}"
     }
 }

@@ -10,9 +10,12 @@ class TestNameShouldFollowNamingConventionTest {
     private val testConventionBacktick = TestNameShouldFollowNamingConvention(
         TestConfig(mapOf(CONVENTION_KEY to NamingConventions.BACKTICK.identifier))
     )
+    private val testConventionSnakeCase = TestNameShouldFollowNamingConvention(
+        TestConfig(mapOf(CONVENTION_KEY to NamingConventions.SNAKE_CASE.identifier))
+    )
 
     @Test
-    fun `test doesnt contains backtick should report issue`() {
+    fun `backtick config test doesnt contains backtick should report issue`() {
         val findings = testConventionBacktick.lint(
             """
             @Test
@@ -28,11 +31,41 @@ class TestNameShouldFollowNamingConventionTest {
     }
 
     @Test
-    fun `test contains backtick find no issues`() {
+    fun `backtick test contains backtick find no issues`() {
         val findings = testConventionBacktick.lint(
             """
             @Test
             fun `addition is correct`() {
+                assertEquals(4, 2 + 2)
+            }
+            """.trimIndent()
+        )
+
+        assertThat(findings).isEmpty()
+    }
+
+    @Test
+    fun `snake_case test doesnt contains snake_case report issue`() {
+        val findings = testConventionSnakeCase.lint(
+            """
+            @Test
+            fun additionIsCorrect() {
+                assertEquals(4, 2 + 2)
+            }
+            """.trimIndent()
+        )
+
+        assertThat(findings).hasSize(1)
+        assertThat(findings[0].message)
+            .isEqualTo("The method additionIsCorrect should be in snake_case (ex.:@Test fun addition_is_correct(){} )")
+    }
+
+    @Test
+    fun `snake_case test contains snake_case no issues`() {
+        val findings = testConventionSnakeCase.lint(
+            """
+            @Test
+            fun addition_is_correct() {
                 assertEquals(4, 2 + 2)
             }
             """.trimIndent()
