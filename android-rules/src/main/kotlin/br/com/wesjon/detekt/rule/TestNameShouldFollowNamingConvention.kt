@@ -19,6 +19,12 @@ enum class NamingConventions(
         identifier = "snake_case",
         regex = "^[a-z._]+\$".toRegex(),
         errorDescription = "The method %s should be in snake_case (ex.:@Test fun addition_is_correct(){} )"
+    ),
+
+    CAMEL_CASE(
+        identifier = "camelCase",
+        regex = "^(([a-z]+[A-Z]*)+([a-zA-Z])*)\$".toRegex(),
+        errorDescription = "The method %s should be in cammelCase (ex.:@Test fun additionIsCorrect(){} )"
     );
 
     companion object {
@@ -49,7 +55,7 @@ class TestNameShouldFollowNamingConvention(config: Config) : Rule(config) {
 
         val functionName = function.nameIdentifier?.text
         if (function.isTestFunction() && functionName != null) {
-            val isFollowingConvention = functionName.contains(selectedConvention.regex)
+            val isFollowingConvention = functionName.matches(selectedConvention.regex)
             if (!isFollowingConvention) {
                 report(
                     CodeSmell(

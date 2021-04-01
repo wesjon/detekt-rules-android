@@ -13,6 +13,9 @@ class TestNameShouldFollowNamingConventionTest {
     private val testConventionSnakeCase = TestNameShouldFollowNamingConvention(
         TestConfig(mapOf(CONVENTION_KEY to NamingConventions.SNAKE_CASE.identifier))
     )
+    private val testConventionCammelCase = TestNameShouldFollowNamingConvention(
+        TestConfig(mapOf(CONVENTION_KEY to NamingConventions.CAMEL_CASE.identifier))
+    )
 
     @Test
     fun `backtick config test doesnt contains backtick should report issue`() {
@@ -66,6 +69,36 @@ class TestNameShouldFollowNamingConventionTest {
             """
             @Test
             fun addition_is_correct() {
+                assertEquals(4, 2 + 2)
+            }
+            """.trimIndent()
+        )
+
+        assertThat(findings).isEmpty()
+    }
+
+    @Test
+    fun `cammelCase test doesnt contains cammelCase report issue`() {
+        val findings = testConventionCammelCase.lint(
+            """
+            @Test
+            fun addition_is_correct() {
+                assertEquals(4, 2 + 2)
+            }
+            """.trimIndent()
+        )
+
+        assertThat(findings).hasSize(1)
+        assertThat(findings[0].message)
+            .isEqualTo("The method addition_is_correct should be in cammelCase (ex.:@Test fun additionIsCorrect(){} )")
+    }
+
+    @Test
+    fun `cammelCase test contains cammelCase no issues`() {
+        val findings = testConventionCammelCase.lint(
+            """
+            @Test
+            fun additionIsCorrect() {
                 assertEquals(4, 2 + 2)
             }
             """.trimIndent()
