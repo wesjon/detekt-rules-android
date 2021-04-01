@@ -1,11 +1,11 @@
 package br.com.wesjon.detekt.rule
 
-import br.com.wesjon.detekt.Tokens
 import br.com.wesjon.detekt.util.isViewModel
 import br.com.wesjon.detekt.util.typeName
 import io.gitlab.arturbosch.detekt.api.*
+import org.jetbrains.kotlin.psi.KtClass
 import org.jetbrains.kotlin.psi.KtProperty
-import org.jetbrains.kotlin.psi.psiUtil.containingClass
+import org.jetbrains.kotlin.psi.psiUtil.collectDescendantsOfType
 import org.jetbrains.kotlin.psi.psiUtil.isPublic
 
 class ViewModelExposesState(config: Config) : Rule(config) {
@@ -16,13 +16,18 @@ class ViewModelExposesState(config: Config) : Rule(config) {
         Debt.TWENTY_MINS
     )
 
-    override fun visitProperty(property: KtProperty) {
-        super.visitProperty(property)
+    override fun visitClass(klass: KtClass) {
+        super.visitClass(klass)
 
-        if (property.isPublic && property.containingClass().isViewModel()) {
-            val isMutableStateProperty = property.typeName in mutableStateTypes
-            if (isMutableStateProperty) {
-                val viewModelName = property.containingClass()?.name ?: Tokens.VIEW_MODEL_NAME
+        if (klass.isViewModel()) {
+            val mutableStateProperties = klass.collectDescendantsOfType<KtProperty>()
+                .asSequence()
+                .filter { property -> property.isPublic }
+                .filter { property -> property.typeName in mutableStateTypes }
+                .toList()
+
+            val viewModelName = klass.name
+            mutableStateProperties.forEach { property ->
                 report(
                     CodeSmell(
                         issue,
