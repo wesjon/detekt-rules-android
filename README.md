@@ -5,7 +5,24 @@
 This repository contains an opinionated set of Detekt Rules for Android projects
 
 
-## Detekt Rules
+## Getting started
+
+#### Add this library declaration into your detekt dependencies
+
+```groovy
+detekt {
+    // ...
+}
+
+dependencies {
+    detektPlugins "br.com.wesjon:detekt-android-rules:0.1" // Add it here
+    detektPlugins "io.gitlab.arturbosch.detekt:detekt-formatting:$detekt_version"
+}
+```
+
+#### Include a new block in your `detekt.yml` file
+
+You may want to activate or deactivate rules according to your project needs.
 
 ```yml
 android-rules:
@@ -31,7 +48,7 @@ fun additionIsCorrect(){
 ```
 #### Compliant code
 
-**CONFIG: backtick*
+**CONFIG: backtick**
 ```kotlin
 @Test
 fun `addition is correct`(){
