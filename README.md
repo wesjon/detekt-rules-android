@@ -9,4 +9,4 @@ This repository contains an opinionated set of Detekt Rules for Android projects
 
 | Rule | Description | Configuration options | 
 | --- | --- | --- |
-| **TestNameShouldFollowNamingConvention** | Checks whether test names follow the name convention | [backtick] |
+| **TestNameShouldFollowNamingConvention** | Checks whether test names follow the name convention | [backtick, snake_case, camelCase] |
