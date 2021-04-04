@@ -1,5 +1,6 @@
 package br.com.wesjon.detekt.rule
 
+import br.com.wesjon.detekt.util.isTestFunction
 import io.gitlab.arturbosch.detekt.api.*
 import org.jetbrains.kotlin.psi.KtLoopExpression
 import org.jetbrains.kotlin.psi.KtNamedFunction
@@ -16,14 +17,9 @@ class NoLoopInTestRule : Rule() {
     override fun visitNamedFunction(function: KtNamedFunction) {
         super.visitNamedFunction(function)
 
-        val isTestMethod = function.annotationEntries.any {
-            it.text == "@Test"
-        }
-
-        if (isTestMethod) {
+        if (function.isTestFunction()) {
             val containsLoop =
-                function.bodyExpression
-                    ?.anyDescendantOfType<KtLoopExpression>() ?: false
+                function.bodyExpression?.anyDescendantOfType<KtLoopExpression>() ?: false
             if (containsLoop) {
                 report(
                     CodeSmell(

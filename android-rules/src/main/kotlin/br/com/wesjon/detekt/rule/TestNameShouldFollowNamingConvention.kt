@@ -28,8 +28,6 @@ enum class NamingConventions(
     );
 
     companion object {
-        val options = values().map { it.identifier }
-
         fun getNamingConventionByIdentifier(identifier: String) =
             values().find { it.identifier == identifier }
     }
@@ -42,7 +40,7 @@ class TestNameShouldFollowNamingConvention(config: Config) : Rule(config) {
         Debt.FIVE_MINS
     )
 
-    private val selectedNamingConvention = valueOrDefault(CONVENTION_KEY, "")
+    private val selectedNamingConvention = valueOrDefault(KEY_CONVENTION, "")
 
     override fun visitNamedFunction(function: KtNamedFunction) {
         super.visitNamedFunction(function)
@@ -68,9 +66,9 @@ class TestNameShouldFollowNamingConvention(config: Config) : Rule(config) {
         }
     }
 
-
     companion object {
-        const val CONVENTION_KEY = "namingConvention"
-        private val optionsText = "options: ${NamingConventions.options.joinToString()}"
+        const val KEY_CONVENTION = "namingConvention"
+        private val optionsText =
+            "options: ${NamingConventions.values().joinToString { it.identifier }}"
     }
 }
