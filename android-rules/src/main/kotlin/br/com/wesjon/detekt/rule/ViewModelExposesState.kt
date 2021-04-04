@@ -17,8 +17,9 @@ class ViewModelExposesState(config: Config) : Rule(config) {
         Debt.TWENTY_MINS
     )
 
-    private val customBaseViewModels =
-        ruleSetConfig.valueOrDefaultCommaSeparated(KEY_CUSTOM_VIEWMODEL_CLASSES_NAME, emptyList())
+    private val customBaseViewModels = ruleSetConfig
+        .subConfig(issue.id)
+        .valueOrDefaultCommaSeparated(KEY_CUSTOM_VIEWMODEL_CLASSES_NAME, emptyList())
 
     override fun visitClass(klass: KtClass) {
         super.visitClass(klass)
@@ -44,7 +45,7 @@ class ViewModelExposesState(config: Config) : Rule(config) {
     }
 
     companion object {
-        val KEY_CUSTOM_VIEWMODEL_CLASSES_NAME = "customViewModels"
+        const val KEY_CUSTOM_VIEWMODEL_CLASSES_NAME = "customViewModels"
         private val mutableStateTypes = listOf("MutableLiveData", "MutableStateFlow")
     }
 }

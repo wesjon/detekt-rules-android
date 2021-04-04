@@ -10,7 +10,7 @@ import org.junit.Test
 class ViewModelExposesStateTest {
     @Test
     fun `ViewModel exposes mutablestate report issue`() {
-        val findings = ViewModelExposesState(Config.empty).lint(
+    val findings = ViewModelExposesState(Config.empty).lint(
             """
                 class LoginViewModel: ViewModel() {
                      val loginViewStateLiveData = MutableLiveData<LoginViewState>()
