@@ -51,24 +51,20 @@ fun additionIsCorrect(){
 ```
 #### Compliant code
 
-**CONFIG: backtick**
 ```kotlin
+// config: backtick
 @Test
 fun `addition is correct`(){
     // ...
 }
-```
 
-**CONFIG: snake_case**
-```kotlin
+// config: snake_case
 @Test
 fun addition_is_correct(){
     // ...
 }
-```
 
-**CONFIG: camelCase**
-```kotlin
+// config: camelCase
 @Test
 fun additionIsCorrect(){
     // ...
