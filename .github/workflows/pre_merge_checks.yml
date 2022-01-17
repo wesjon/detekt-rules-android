@@ -15,10 +15,10 @@ jobs:
         uses: actions/setup-java@v2.3.0
         with:
           distribution: 'zulu'
-          java-version: 8
+          java-version: 11
 
       - name: Assemble sample app
-        run: ./gradlew sample:assemble
+        run: ./gradlew sample:assembleDebug
 
   test_custom_detekt_rules:
     runs-on: ubuntu-latest
@@ -29,7 +29,7 @@ jobs:
         uses: actions/setup-java@v2.3.0
         with:
           distribution: 'zulu'
-          java-version: 8
+          java-version: 11
 
       - name: test detekt rules
         run: ./gradlew android-rules:test
