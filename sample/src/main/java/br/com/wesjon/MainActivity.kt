@@ -9,6 +9,6 @@ open class BaseViewModel
 open class CustomViewModel
 open class MutableLiveData
 
-class LoginViewModel: CustomViewModel(){
+class LoginViewModel : CustomViewModel() {
     val loginState = MutableLiveData()
 }
