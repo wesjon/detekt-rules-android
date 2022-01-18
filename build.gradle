@@ -20,6 +20,16 @@ allprojects {
     }
 }
 
+subprojects {
+    afterEvaluate { subProject ->
+        if (subProject.name != "android-rules") {
+            tasks.named("detekt") {
+                dependsOn(":android-rules:assemble")
+            }
+        }
+    }
+}
+
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
